@@ -1,17 +1,112 @@
-﻿@model BSIT3L_Movies.Models.MovieViewModel
-
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Movie</title>
+    <title>@Model.Name</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0000EE;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+        .container {
+       
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+        }
+        
+
+        .movie-details {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .movie-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .movie-info {
+            font-size: 16px;
+        }
+
+        .trailer-link {
+            font-size: 18px;
+            text-align: center;
+        }
+
+            .trailer-link a {
+                background-color: #e50914;
+                padding: 10px 20px;
+                border-radius: 5px;
+                display: inline-block;
+                margin-top: 10px;
+                color: #fff;
+                text-decoration: none;
+            }
+
+                .trailer-link a:hover {
+                    background-color: #ff0000;
+                }
+
+        /* Set the size of the image */
+        .movie-poster {
+            max-width: 550px;
+            height: 470px;
+        }
+
+
+    </style>
 </head>
 <body>
-    <h2>Movie Details</h2>
-    <p>Movie ID: @Model.Id</p>
-    <p>Movie Name: @Model.Name</p>
-    <p>Rating: @Model.Rating</p>
-    <p>Release Year: @Model.ReleaseYear</p>
-    <p>Genre: @Model.Genre</p>
+    <div class="container">
+        <img src="@Model.Images" alt="Image Poster" class="movie-poster">
+        <div class="movie-details">
+            <h2>Movie Details</h2>
+            <p class="movie-title">Movie Name: @Model.Name</p>
+            <p class="movie-info"><b>Rating</b>: @Model.Rating</p>
+            <p class="movie-info"><b>Release Year</b>: @Model.ReleaseYear</p>
+            <p class="movie-info"><b>Genre</b>: @Model.Genre</p>
+            <p class="movie-info"><b>Description</b>: @Model.Description</p>
+
+            @if (!string.IsNullOrWhiteSpace(Model.YouTubeUrl))
+            {
+                <div class="trailer-link"><a href="@Model.YouTubeUrl" target="_blank">Watch Trailer</a></div>
+            }
+
+        </div>
+    </div>
 </body>
 </html>

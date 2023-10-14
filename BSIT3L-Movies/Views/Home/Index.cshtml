@@ -1,31 +1,80 @@
 ﻿@model List<MovieViewModel>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Fleurlovinwinter";
 }
 
+<style>
+    .container {
+        margin: 50px;
+    }
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Release Year</th>
-            <th>Genre</th>
-        </tr>
-    </thead>
-    <tbody>
+    h1 {
+        margin-bottom: 20px;
+        color: red;
+    }
+
+    body {
+        background-color: #E0BBE4;
+    }
+
+    .movie-card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .movie-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin: 15px;
+        background-color: floralwhite;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 30%;
+        padding: 15px;
+        transition: background-color 0.1s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+        .movie-card:hover {
+            background-color: yellow;
+            transform: scale(1.13);
+        }
+
+    .movie-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .movie-info {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .movie-rating {
+        color: #e67e22;
+        font-weight: bold;
+    }
+
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+    <div class="movie-card-container">
         @foreach (var movie in Model)
         {
-            <tr>
-                <td>@movie.Id</td>
-                <td ><a href = "/movies/getmovie/@movie.Id" > @movie.Name </a></td>
-                <td>@movie.Rating</td>
-                <td>@movie.ReleaseYear</td>
-                <td>@movie.Genre</td>
-            </tr>
+            <div class="movie-card">
+                <h2 class="movie-title"><a href="/movies/getmovie/@movie.Id">@movie.Name</a></h2>
+                <p class="movie-info">
+                    <span class="movie-rating">Rating:</span> @movie.Rating<br />
+                    <span>Release Year:</span> @movie.ReleaseYear<br />
+                    <span>Genre:</span> @movie.Genre<br />
+                </p>
+            </div>
         }
-    </tbody>
-</table>
-
+    </div>
+</div>
